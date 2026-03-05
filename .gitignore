@@ -5,6 +5,9 @@
 .env.test.local
 .env.production.local
 
+#Files to ignore
+seed.js
+
 # Dependencies
 node_modules/
 

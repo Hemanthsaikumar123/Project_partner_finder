@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const projectRoutes = require('./routes/projectRoutes');
 require('dotenv').config();
 
 const app = express();
@@ -8,6 +9,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use('/api/projects', projectRoutes);
 
 // 1. Connect to MongoDB Atlas
 mongoose.connect(process.env.MONGO_URI)

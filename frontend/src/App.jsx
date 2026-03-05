@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import AddProject from './components/AddProject';
 function App() {
   const [projects, setProjects] = useState([]);
 
+  const addNewProjectToList = (newProj) => {
+  setProjects([newProj, ...projects]);
+};
   // Load projects from Backend when the page opens
   useEffect(() => {
     axios.get('http://localhost:5000/api/projects')
@@ -23,6 +26,7 @@ function App() {
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h1>🚀 Project Partner Finder</h1>
+      <AddProject onProjectAdded={addNewProjectToList} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
         {projects.map(project => (
           <div key={project._id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px', boxShadow: '2px 2px 10px rgba(0,0,0,0.1)' }}>
