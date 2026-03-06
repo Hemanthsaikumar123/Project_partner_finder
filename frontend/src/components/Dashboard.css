@@ -2,6 +2,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  background: #f8fafc;
+  min-height: calc(100vh - 70px);
 }
 
 .dashboard-header {
@@ -15,34 +17,28 @@
 
 .dashboard-title {
   font-size: 2rem;
-  font-weight: 700;
-  color: #2d3748;
+  font-weight: 600;
+  color: #0f172a;
   margin: 0;
+  font-family: 'Courier New', monospace;
 }
 
 .add-project-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #14b8a6;
   color: white;
   border: none;
-  padding: 12px 28px;
-  border-radius: 8px;
+  padding: 10px 24px;
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
+  font-weight: 500;
+  font-size: 0.95rem;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .add-project-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.5);
-}
-
-.add-project-btn:active {
-  transform: translateY(0);
+  background: #0d9488;
 }
 
 .projects-grid {
@@ -54,36 +50,23 @@
 
 .project-card {
   background: white;
-  border: none;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 20px;
+  border-left: 3px solid #14b8a6;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border-left-color: #0d9488;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .project-title {
   margin-top: 0;
   margin-bottom: 12px;
-  font-size: 1.4rem;
-  color: #667eea;
-  font-weight: 700;
+  font-size: 1.3rem;
+  color: #0f172a;
+  font-weight: 600;
 }
 
 .project-description {
@@ -112,12 +95,13 @@
 }
 
 .skill-tag {
-  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
-  color: #5a67d8;
-  padding: 6px 14px;
-  border-radius: 20px;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 4px 12px;
+  border-radius: 3px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
 }
 
 .project-slots {
@@ -131,20 +115,19 @@
 
 .join-btn {
   width: 100%;
-  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  background: #14b8a6;
   color: white;
   border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 4px rgba(72, 187, 120, 0.4);
 }
 
 .join-btn:hover {
-  transform: translateY(-2px);
+  background: #0d9488;
+
   box-shadow: 0 4px 8px rgba(72, 187, 120, 0.5);
 }
 

@@ -1,21 +1,9 @@
 .add-project-form {
   background: white;
-  padding: 28px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
   margin-bottom: 2rem;
-  animation: slideDown 0.3s ease-out;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .form-header {
@@ -26,31 +14,30 @@
 }
 
 .form-title {
-  color: #2d3748;
-  font-size: 1.5rem;
-  font-weight: 700;
+  color: #0f172a;
+  font-size: 1.3rem;
+  font-weight: 600;
   margin: 0;
 }
 
 .close-btn {
   background: transparent;
   border: none;
-  font-size: 1.8rem;
-  color: #a0aec0;
+  font-size: 1.6rem;
+  color: #94a3b8;
   cursor: pointer;
   padding: 0;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: all 0.2s ease;
+  border-radius: 4px;
 }
 
 .close-btn:hover {
-  background: #f7fafc;
-  color: #2d3748;
+  background: #f1f5f9;
+  color: #334155;
 }
 
 .form-group {
@@ -68,20 +55,18 @@
 .form-input,
 .form-textarea {
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 0.95rem;
   font-family: inherit;
-  transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #14b8a6;
 }
 
 .form-textarea {
@@ -101,26 +86,19 @@
 }
 
 .submit-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #14b8a6;
   color: white;
   border: none;
-  padding: 14px 32px;
-  border-radius: 8px;
+  padding: 12px 24px;
+  border-radius: 4px;
   cursor: pointer;
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 0.95rem;
   width: 100%;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
 }
 
 .submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.5);
-}
-
-.submit-btn:active {
-  transform: translateY(0);
+  background: #0d9488;
 }
 
 @media (max-width: 768px) {

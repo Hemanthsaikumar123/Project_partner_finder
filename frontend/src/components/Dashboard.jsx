@@ -72,7 +72,7 @@ function Dashboard({ user }) {
               <p className="project-slots">
                 <strong>👥 Slots:</strong> {project.applicants.filter(a => a.status === 'accepted').length} / {project.maxMembers}
               </p>
-              {user && (
+              {user && project.owner && project.owner._id !== user.id && (
                 <button onClick={() => handleJoin(project._id)} className="join-btn">
                   🤝 Request to Join
                 </button>

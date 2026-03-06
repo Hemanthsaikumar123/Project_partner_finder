@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import MyProjects from './components/MyProjects';
 import LoginPage from './components/LoginPage';
+import Notifications from './components/Notifications';
 
 function App() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);
@@ -33,6 +34,11 @@ function App() {
           <Route 
             path="/my-projects" 
             element={user ? <MyProjects user={user} /> : <Navigate to="/login" />} 
+          />
+          
+          <Route 
+            path="/notifications" 
+            element={user ? <Notifications user={user} /> : <Navigate to="/login" />} 
           />
         </Routes>
       </div>

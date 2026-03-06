@@ -44,8 +44,7 @@
 
 .auth-input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #14b8a6;
 }
 
 .auth-input::placeholder {
@@ -55,39 +54,31 @@
 .auth-submit-btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #14b8a6;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(102, 126, 234, 0.4);
   margin-top: 8px;
 }
 
 .auth-submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(102, 126, 234, 0.5);
-}
-
-.auth-submit-btn:active {
-  transform: translateY(0);
+  background: #0d9488;
 }
 
 .auth-toggle {
   text-align: center;
   margin-top: 20px;
-  color: #667eea;
+  color: #14b8a6;
   cursor: pointer;
   font-size: 0.95rem;
   font-weight: 500;
-  transition: color 0.2s ease;
 }
 
 .auth-toggle:hover {
-  color: #764ba2;
+  color: #0d9488;
   text-decoration: underline;
 }
 

@@ -7,7 +7,9 @@ const authMiddleware = require('../middleware/auth');
 // GET all projects
 router.get('/', async (req, res) => {
   try {
-    const projects = await Project.find().populate('applicants.user', 'name email');
+    const projects = await Project.find()
+      .populate('owner', '_id name email')
+      .populate('applicants.user', 'name email');
     res.json(projects);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -35,8 +37,16 @@ router.post('/:id/join', authMiddleware, async (req, res) => {
     const projectId = req.params.id;
     const userId = req.userId; // Get from authenticated user
 
+    // Get project and applicant info
+    const project = await Project.findById(projectId).populate('owner', '_id name email');
+    const applicant = await User.findById(userId);
+
+    if (!project) {
+      return res.status(404).json({ msg: "Project not found" });
+    }
+
     // 1. Add User to Project's applicant list
-    const project = await Project.findByIdAndUpdate(
+    await Project.findByIdAndUpdate(
       projectId,
       { $addToSet: { applicants: { user: userId } } }, // $addToSet prevents duplicates
       { new: true }
@@ -46,6 +56,22 @@ router.post('/:id/join', authMiddleware, async (req, res) => {
     await User.findByIdAndUpdate(
       userId,
       { $addToSet: { joinedProjects: projectId } }
+    );
+
+    // 3. Create notification for project owner
+    await User.findByIdAndUpdate(
+      project.owner._id,
+      { 
+        $push: { 
+          notifications: {
+            message: `${applicant.name} requested to join "${project.title}"`,
+            projectId: projectId,
+            fromUser: userId,
+            read: false,
+            createdAt: new Date()
+          }
+        }
+      }
     );
 
     res.json({ msg: "Successfully requested to join project!" });
@@ -111,6 +137,37 @@ router.post('/:id/reject', authMiddleware, async (req, res) => {
     }
 
     res.json({ msg: "Applicant rejected!", project: updatedProject });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE Remove an applicant (protected route)
+router.delete('/:id/applicant/:applicantId', authMiddleware, async (req, res) => {
+  try {
+    const projectId = req.params.id;
+    const applicantId = req.params.applicantId;
+
+    // Verify the user is the owner of the project
+    const project = await Project.findById(projectId);
+    if (!project) {
+      return res.status(404).json({ msg: "Project not found" });
+    }
+    if (project.owner.toString() !== req.userId) {
+      return res.status(403).json({ msg: "Not authorized to remove applicants" });
+    }
+
+    const updatedProject = await Project.findByIdAndUpdate(
+      projectId,
+      { $pull: { applicants: { user: applicantId } } },
+      { new: true }
+    );
+
+    if (!updatedProject) {
+      return res.status(404).json({ msg: "Project not found" });
+    }
+
+    res.json({ msg: "Applicant removed!", project: updatedProject });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

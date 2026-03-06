@@ -2,13 +2,29 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  background: #f8fafc;
+  min-height: calc(100vh - 70px);
 }
 
 .my-projects-title {
   font-size: 2rem;
-  font-weight: 700;
-  color: #2d3748;
+  font-weight: 600;
+  color: #0f172a;
   margin-bottom: 2rem;
+  font-family: 'Courier New', monospace;
+}
+
+.projects-section {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #14b8a6;
 }
 
 .my-projects-grid {
@@ -19,30 +35,36 @@
 
 .my-project-card {
   background: white;
-  border: none;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.my-project-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 20px;
+  border-left: 3px solid #14b8a6;
 }
 
 .applicants-section {
   margin-top: 20px;
-  padding: 16px;
-  background: #f7fafc;
-  border-radius: 8px;
+  padding: 14px;
+  background: #f8fafc;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.my-status-section {
+  margin-top: 20px;
+  padding: 14px;
+  background: #ecfdf5;
+  border-radius: 4px;
+  border-left: 3px solid #14b8a6;
+  border: 1px solid #d1fae5;
+}
+
+.my-status {
+  margin: 0;
+  font-size: 1rem;
+  color: #2d3748;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .applicants-title {
@@ -57,10 +79,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px;
-  margin-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
   background: white;
-  border-radius: 8px;
+  border-radius: 4px;
   border: 1px solid #e2e8f0;
   gap: 10px;
   flex-wrap: wrap;
@@ -74,26 +96,30 @@
 }
 
 .status-badge {
-  padding: 5px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  font-weight: 500;
   text-transform: capitalize;
+  border: 1px solid;
 }
 
 .status-accepted {
-  background: #c6f6d5;
-  color: #22543d;
+  background: #d1fae5;
+  color: #065f46;
+  border-color: #10b981;
 }
 
 .status-rejected {
-  background: #fed7d7;
-  color: #742a2a;
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #ef4444;
 }
 
 .status-pending {
-  background: #feebc8;
-  color: #7c2d12;
+  background: #fef3c7;
+  color: #92400e;
+  border-color: #f59e0b;
 }
 
 .applicant-actions {
@@ -102,34 +128,41 @@
 }
 
 .accept-btn,
-.reject-btn {
-  padding: 6px 16px;
+.reject-btn,
+.delete-btn {
+  padding: 6px 14px;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  font-weight: 500;
 }
 
 .accept-btn {
-  background: #48bb78;
+  background: #10b981;
   color: white;
 }
 
 .accept-btn:hover {
-  background: #38a169;
-  transform: translateY(-1px);
+  background: #059669;
 }
 
 .reject-btn {
-  background: #f56565;
+  background: #ef4444;
   color: white;
 }
 
 .reject-btn:hover {
-  background: #e53e3e;
-  transform: translateY(-1px);
+  background: #dc2626;
+}
+
+.delete-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #d97706;
 }
 
 .no-projects-message {
@@ -166,7 +199,8 @@
   }
 
   .accept-btn,
-  .reject-btn {
+  .reject-btn,
+  .delete-btn {
     flex: 1;
   }
 }
