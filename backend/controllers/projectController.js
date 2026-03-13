@@ -175,3 +175,100 @@ exports.rejectApplicant = async (req, res) => {
   }
 
 }
+
+
+//SINGLE PROJECT DETAILS(Members can get private details but not all)
+
+exports.getProjectById = async (req, res) => {
+
+  try {
+
+    const project = await Project.findById(req.params.id)
+      .populate("owner", "name email github linkedin skills")
+      .populate("members", "name email github linkedin skills")
+      .populate("applicants.user", "name skills")
+
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" })
+    }
+
+    const isOwner = project.owner._id.toString() === req.user
+
+    const isMember = project.members.some(
+      member => member._id.toString() === req.user
+    )
+
+    let response = {
+      _id: project._id,
+      title: project.title,
+      description: project.description,
+      requiredSkills: project.requiredSkills,
+      maxMembers: project.maxMembers,
+      owner: {
+        name: project.owner.name
+      },
+      membersCount: project.members.length
+    }
+
+    // If user is a member → show member contact details
+    if (isMember || isOwner) {
+
+      response.members = project.members
+
+    }
+
+    // If user is owner → show applicants
+    if (isOwner) {
+
+      response.applicants = project.applicants
+
+    }
+
+    res.json(response)
+
+  } catch (error) {
+
+    res.status(500).json({ message: "Server error" })
+
+  }
+
+}
+
+
+
+// GET PROJECTS CREATED BY USER
+
+exports.getMyProjects = async (req, res) => {
+
+  try {
+
+    const projects = await Project.find({ owner: req.user })
+      .populate("members", "name")
+
+    res.json(projects)
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error" })
+  }
+
+}
+
+
+
+// GET PROJECTS USER APPLIED TO
+
+exports.getAppliedProjects = async (req, res) => {
+
+  try {
+
+    const projects = await Project.find({
+      "applicants.user": req.user
+    }).populate("owner", "name")
+
+    res.json(projects)
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error" })
+  }
+
+}
