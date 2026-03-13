@@ -5,6 +5,15 @@ const { register, login } = require("../controllers/authController")
 router.post("/register",register)
 router.post("/login",login)
 
+const authMiddleware = require("../middleware/authMiddleware")
+
+router.get("/protected", authMiddleware, (req,res)=>{
+    res.json({
+        message:"Protected route accessed",
+        user:req.user
+    })
+})
+
 
 module.exports=router
 
