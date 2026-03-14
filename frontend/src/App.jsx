@@ -1,10 +1,20 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
 function App() {
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold text-blue-600">
-        DevCollab Platform 🚀
-      </h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+
+        <Route path="/" element={<h1>Home</h1>} />
+
+        <Route path="/login" element={<h1>Login Page</h1>} />
+
+        <Route path="/register" element={<h1>Register Page</h1>} />
+
+        <Route path="/dashboard" element={<h1>Dashboard</h1>} />
+
+      </Routes>
+    </BrowserRouter>
   )
 }
 
