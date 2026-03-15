@@ -4,6 +4,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import ProjectFeed from "./pages/ProjectFeed"
 import CreateProject from "./pages/CreateProject"
+import ProjectDetails from "./pages/ProjectDetails"
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
         <Route path="/dashboard" element={<ProjectFeed />} />
 
         <Route path="/create-project" element={<CreateProject />} />
+
+        <Route path="/projects/:id" element={<ProjectDetails />} />
 
       </Routes>
 

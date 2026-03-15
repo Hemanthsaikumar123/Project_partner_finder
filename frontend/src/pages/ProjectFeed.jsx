@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import API from "../api/axios"
 
 function ProjectFeed() {
@@ -35,7 +36,7 @@ function ProjectFeed() {
 
     } catch (err) {
 
-      alert("Failed to apply")
+      alert(err.response.data.message || "Failed to apply")
 
     }
 
@@ -76,12 +77,26 @@ function ProjectFeed() {
 
             </div>
 
+            <div className="flex gap-3 mt-3">
+
+              <Link
+                to={`/projects/${project._id}`}
+                className="bg-blue-600 text-white px-4 py-2 rounded"
+              >
+                View Details
+              </Link>
+
+            </div>
+
+            <br />
+
             <button
               onClick={() => applyToProject(project._id)}
               className="bg-blue-600 text-white px-4 py-2 rounded"
             >
               Apply
             </button>
+
 
           </div>
 
