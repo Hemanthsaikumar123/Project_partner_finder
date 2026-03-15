@@ -24,19 +24,19 @@ function Navbar() {
 
       <div className="flex gap-4 items-center">
 
-        <Link
+        {user && <Link
           to="/dashboard"
           className="hover:text-gray-300"
         >
           Projects
-        </Link>
+        </Link> }
 
-        <Link
+        {user && <Link
           to="/create-project"
           className="hover:text-gray-300"
         >
           Create Project
-        </Link>
+        </Link>}
 
         {user && (
           <button

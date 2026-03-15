@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 
 import Login from "./pages/Login"
 import Register from "./pages/Register"
@@ -6,6 +6,7 @@ import ProjectFeed from "./pages/ProjectFeed"
 import CreateProject from "./pages/CreateProject"
 import ProjectDetails from "./pages/ProjectDetails"
 import Navbar from "./components/Navbar"
+import ProtectedRoute from "./components/ProtectedRoute"
 
 function App() {
 
@@ -15,6 +16,8 @@ function App() {
 
       <Navbar />
       <Routes>
+
+        <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
         <Route path="/login" element={<Login />} />
 
@@ -46,6 +49,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
 
       </Routes>
 
