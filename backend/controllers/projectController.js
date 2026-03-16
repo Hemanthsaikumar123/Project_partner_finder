@@ -127,11 +127,16 @@ exports.acceptApplicant = async (req, res) => {
 
     await project.save()
 
+    const acceptedUser = await User.findById(req.params.userId).select("name")
+
     await User.findByIdAndUpdate(req.params.userId, {
       $push: { joinedProjects: project._id }
     })
 
-    res.json({ message: "Applicant accepted" })
+    res.json({
+      message: `${acceptedUser?.name || "Applicant"} accepted`,
+      applicantName: acceptedUser?.name || null
+    })
 
   } catch (error) {
     res.status(500).json({ message: "Server error" })
@@ -168,7 +173,12 @@ exports.rejectApplicant = async (req, res) => {
 
     await project.save()
 
-    res.json({ message: "Applicant rejected" })
+    const rejectedUser = await User.findById(req.params.userId).select("name")
+
+    res.json({
+      message: `${rejectedUser?.name || "Applicant"} rejected`,
+      applicantName: rejectedUser?.name || null
+    })
 
   } catch (error) {
     res.status(500).json({ message: "Server error" })
@@ -243,7 +253,8 @@ exports.getMyProjects = async (req, res) => {
   try {
 
     const projects = await Project.find({ owner: req.user })
-      .populate("members", "name")
+      .populate("members", "name email")
+      .populate("applicants.user", "name email skills")
 
     res.json(projects)
 

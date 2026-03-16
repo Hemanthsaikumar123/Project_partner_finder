@@ -58,6 +58,10 @@ function ProjectDetails() {
         {project.description}
       </p>
 
+      <p className="mb-4 text-gray-700">
+        Owner: {project.owner?.name || "Unknown owner"}
+      </p>
+
       <h3 className="font-bold mb-2">Required Skills</h3>
 
       <div className="mb-4">
@@ -76,6 +80,23 @@ function ProjectDetails() {
       <p className="mb-4">
         Members: {project.membersCount} / {project.maxMembers}
       </p>
+
+      {project.members?.length > 0 && (
+        <div className="mb-6">
+          <h3 className="font-bold mb-2">Team Members</h3>
+
+          <div className="space-y-2">
+            {project.members.map(member => (
+              <div key={member._id} className="rounded border p-3">
+                <p className="font-medium">{member.name}</p>
+                {member.email && <p className="text-sm text-gray-600">{member.email}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+     
 
       <button
         onClick={applyToProject}
